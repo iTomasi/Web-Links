@@ -1,0 +1,15 @@
+@font-face {
+    font-family: "Open-Sans";
+    src: url("/OpenSans-Regular.ttf") format("ttf");
+}
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: "Open-Sans", sans-serif;
+}
+@import "./variables.scss";
+
+@import "./components/components_dir.scss";
+@import "./pages/pages_dir.scss";

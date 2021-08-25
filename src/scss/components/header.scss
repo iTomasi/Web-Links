@@ -1,0 +1,35 @@
+.iw_header {
+    background: #f9f9f9;
+    padding-left: 30px;
+    padding-right: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 70px;
+    margin-bottom: 20px;
+
+    .iws_search {
+        display: flex;
+        align-items: center;
+        border: 1px solid #e6eaef;
+        width: 50%;
+        padding: 8px;
+        border-radius: 5px;
+        min-width: 120px;
+
+        /* Tomas Duclos */
+
+        .iws_icon {
+            padding-right: 8px;
+            font-size: $FONT_LG;
+        }
+
+        input {
+            border: none;
+            outline: none;
+            background: transparent;
+            width: 100%;
+            font-size: $FONT_LG;
+        }
+    }
+}

@@ -1,0 +1,37 @@
+.iw_mainLayout {
+    display: flex;
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+
+    .iws_sideBar {
+        background: #364f6b;
+        min-width: 50px;
+        padding: 10px 0;
+
+        .iws_circle {
+            width: 40px;
+            height: 40px;
+            border-radius: 1000px;
+            background: #e6eaef;
+            margin: auto;
+        }
+    }
+
+    .iws_container {
+        background: #e6eaef;
+        width: 100%;
+        overflow-y: auto;
+
+        /* Tomas Duclos */
+
+        .iws_content {
+            padding-left: 30px;
+            padding-right: 20px;
+            max-width: 1500px;
+            margin: 0 auto 0 auto;
+        }
+    }
+}

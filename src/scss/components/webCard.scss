@@ -1,0 +1,52 @@
+.iw_webCard {
+    background: #f9f9f9;
+    padding-bottom: 10px;
+    border-top-right-radius: 20px;
+
+    .iws_content {
+        padding: 10px;
+
+        h3 {
+            color: #39a1e7;
+            margin-bottom: 30px;
+            font-size: $FONT_XL;
+        }
+
+        p {
+            color: #555;
+            margin-bottom: 30px;
+            font-size: $FONT_LG;
+        }
+
+        .iws_hashtags {
+            display: flex;
+            flex-wrap: wrap;
+
+            h5 {
+                background: #bababa;
+                border-radius: 20px;
+                margin-right: 10px;
+                padding: 5px 8px;
+                color: #000;
+                margin-bottom: 10px;
+            }
+        }
+    }
+
+    .iws_icons {
+        text-align: right;
+        padding-right: 10px;
+        font-size: $FONT_XL;
+
+        .iws_iconEdit {
+            color: #364f6b;
+            margin-right: 10px;
+            cursor: pointer;
+        }
+
+        .iws_iconTrash {
+            color: #fc5185;
+            cursor: pointer;
+        }
+    }
+}

@@ -1,0 +1,29 @@
+.iw_formSection {
+    margin-bottom: 20px;
+
+    label {
+        display: block;
+        margin-bottom: 5px;
+        font-size: $FONT_XL;
+    }
+
+    input {
+        width: 100%;
+        border: 2px solid #e6eaef;
+        outline: none;
+        font-size: $FONT_XL;
+        padding: 5px;
+        border-radius: 5px;
+    }
+
+    textarea {
+        width: 100%;
+        border: 2px solid #e6eaef;
+        outline: none;
+        font-size: $FONT_XL;
+        resize: vertical;
+        min-height: 55px;
+        padding: 5px;
+        border-radius: 5px;
+    }
+}

@@ -1,0 +1,34 @@
+.iw_modalHandleWeb {
+    background: #f9f9f9;
+    width: 95%;
+    max-width: 600px;
+    padding-bottom: 10px;
+
+    .iws_content {
+        padding: 10px 15px;
+        h2 {
+            margin-bottom: 30px;
+            font-size: 25px;
+        }
+    }
+
+    .iws_buttons {
+        text-align: right;
+
+        button {
+            margin-right: 10px;
+            background: #e6eaef;
+            font-size: $FONT_LG;
+            padding: 10px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            border: none;
+            outline: none;
+        }
+
+        button[type="submit"] {
+            background: #3fc1c9;
+            color: #f9f9f9;
+        }
+    }
+}
