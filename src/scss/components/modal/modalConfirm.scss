@@ -1,14 +1,20 @@
-.iw_modalHandleWeb {
+.iw_modalConfirm {
     background: #f9f9f9;
     width: 95%;
     max-width: 600px;
     padding-bottom: 10px;
 
     .iws_content {
-        padding: 10px 15px;
-        h2 {
-            margin-bottom: 30px;
-            font-size: 25px;
+        padding: 10px;
+        margin-bottom: 30px;
+
+        h3 {
+            margin-bottom: 15px;
+            font-size: $FONT_XL;
+        }
+
+        p {
+            font-size: $FONT_LG;
         }
     }
 
@@ -17,13 +23,13 @@
 
         button {
             margin-right: 10px;
-            background: #e6eaef;
-            font-size: $FONT_LG;
-            padding: 10px 15px;
-            border-radius: 5px;
-            cursor: pointer;
             border: none;
             outline: none;
+            background: #e6eaef;
+            cursor: pointer;
+            padding: 5px 10px;
+            border-radius: 5px;
+            font-size: $FONT_LG;
         }
 
         .iws_accept-btn {

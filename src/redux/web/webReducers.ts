@@ -24,6 +24,8 @@ const webReducers = (state = initialState, action: any) => {
                 originalWebs: [...state.originalWebs, payload],
                 webs: [...state.webs, payload],
             };
+        case webTypes.removeWeb:
+            return payload;
 
         default:
             return state;

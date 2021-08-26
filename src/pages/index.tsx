@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from "react";
+import { toast } from "react-hot-toast";
 
 // Components
 import WebCard from "components/WebCard";
 import ModalContainer from "components/modal/ModalContainer";
 import ModalHandleWeb from "components/modal/ModalHandleWeb";
+import ModalConfirm from "components/modal/ModalConfirm";
 import FixedAddBtn from "components/FixedAddBtn";
 
 // Types
@@ -11,7 +13,10 @@ import { IFormWeb } from "types/Form";
 
 // Redux
 import { useSelector, useDispatch } from "react-redux";
-import { updateInitialValues } from "reduxSrc/web/webState";
+import { updateInitialValues, removingWebPage } from "reduxSrc/web/webState";
+
+// Axios
+import removeWebFunc from "axiosSrc/web/removeWeb";
 
 const formWebInitialValue: IFormWeb = {
     _id: "",
@@ -27,9 +32,14 @@ const Index = () => {
     const dispatch = useDispatch();
 
     const [formWeb, setFormWeb] = useState<IFormWeb>(formWebInitialValue);
+    const [removeWeb, setRemoveWeb] = useState({
+        _id: "",
+        title: "",
+    });
 
     const [isAdding, setIsAdding] = useState<boolean>(true);
     const [showModalForm, setShowModalForm] = useState<boolean>(false);
+    const [showModalRemove, setShowModalRemove] = useState<boolean>(false);
 
     useEffect(() => {
         const effectFunc = async () => {
@@ -40,6 +50,34 @@ const Index = () => {
 
         effectFunc();
     }, []);
+
+    const getDataEdit = (payload: IFormWeb) => {
+        setIsAdding(false);
+        setFormWeb(payload);
+        setShowModalForm(true);
+    };
+
+    const getDataRemove = (payload) => {
+        setRemoveWeb(payload);
+        setShowModalRemove(true);
+    };
+
+    const handleModalRemovePageBtn = async () => {
+        const { error } = await removeWebFunc(removeWeb._id);
+
+        if (error) return toast.error(error);
+
+        toast.success("Pagina eliminada correctamente");
+
+        const payload = removingWebPage({
+            webId: removeWeb._id,
+            originalWebs: webs.originalWebs,
+            websArray: webs.webs,
+        });
+
+        dispatch(payload);
+        setShowModalRemove(false);
+    };
 
     return (
         <>
@@ -61,6 +99,8 @@ const Index = () => {
                                         hashTags={web.hashTags}
                                         title={web.title}
                                         url={web.url}
+                                        getDataEdit={getDataEdit}
+                                        getDataRemove={getDataRemove}
                                     />
                                 );
                             }
@@ -76,6 +116,8 @@ const Index = () => {
                                     hashTags={web.hashTags}
                                     title={web.title}
                                     url={web.url}
+                                    getDataEdit={getDataEdit}
+                                    getDataRemove={getDataRemove}
                                 />
                             );
                         }
@@ -97,6 +139,15 @@ const Index = () => {
                     setFormWeb={setFormWeb}
                     adding={isAdding}
                     setShowModal={setShowModalForm}
+                />
+            </ModalContainer>
+
+            <ModalContainer show={showModalRemove} setShow={setShowModalRemove}>
+                <ModalConfirm
+                    setShowModal={setShowModalRemove}
+                    title="Eliminar pagina"
+                    description={`Estas seguro que quieres remover la pagina '${removeWeb.title}'`}
+                    onClickAccept={handleModalRemovePageBtn}
                 />
             </ModalContainer>
         </>

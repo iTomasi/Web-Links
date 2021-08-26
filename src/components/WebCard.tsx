@@ -10,9 +10,19 @@ interface IWebCardProps {
     url: string;
     description: string;
     hashTags: string[];
+    getDataEdit: any;
+    getDataRemove: any;
 }
 
-const WebCard = ({ id, title, url, description, hashTags }: IWebCardProps) => {
+const WebCard = ({
+    id,
+    title,
+    url,
+    description,
+    hashTags,
+    getDataEdit,
+    getDataRemove,
+}: IWebCardProps) => {
     return (
         <div className="iw_webCard">
             <div className="iws_content">
@@ -28,8 +38,29 @@ const WebCard = ({ id, title, url, description, hashTags }: IWebCardProps) => {
             </div>
 
             <div className="iws_icons">
-                <FontAwesomeIcon className="iws_iconEdit" icon={faEdit} />
-                <FontAwesomeIcon className="iws_iconTrash" icon={faTrash} />
+                <FontAwesomeIcon
+                    className="iws_iconEdit"
+                    icon={faEdit}
+                    onClick={() => {
+                        return getDataEdit({
+                            _id: id,
+                            title,
+                            url,
+                            description,
+                            hashTags,
+                        });
+                    }}
+                />
+                <FontAwesomeIcon
+                    className="iws_iconTrash"
+                    icon={faTrash}
+                    onClick={() => {
+                        return getDataRemove({
+                            _id: id,
+                            title,
+                        });
+                    }}
+                />
             </div>
         </div>
     );

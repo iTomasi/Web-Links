@@ -9,6 +9,7 @@ interface IFormSectionProps {
     value: string;
     name: string;
     onChange: any;
+    disabled?: boolean;
 }
 
 const FormSection = ({
@@ -19,6 +20,7 @@ const FormSection = ({
     value,
     name,
     onChange,
+    disabled = false,
 }: IFormSectionProps) => {
     const handleOnChange = (e: any) => {
         const theValue: string = e.target.value;
@@ -46,6 +48,7 @@ const FormSection = ({
                     onChange={handleOnChange}
                     value={value}
                     name={name}
+                    disabled={disabled}
                 ></textarea>
             ) : (
                 <input
@@ -54,6 +57,7 @@ const FormSection = ({
                     value={value}
                     onChange={handleOnChange}
                     name={name}
+                    disabled={disabled}
                 />
             )}
         </div>
