@@ -7,7 +7,13 @@ import {
     faSortAlphaDownAlt,
 } from "@fortawesome/free-solid-svg-icons";
 
+// Redux
+import { useDispatch } from "react-redux";
+import { updateFilterValue } from "reduxSrc/filter/filterState";
+
 const Header = () => {
+    const dispatch = useDispatch();
+
     return (
         <header className="iw_header">
             <label className="iws_search">
@@ -15,7 +21,15 @@ const Header = () => {
                     <FontAwesomeIcon icon={faSearch} />
                 </div>
 
-                <input type="text" placeholder="Buscar" />
+                <input
+                    type="text"
+                    placeholder="Buscar"
+                    onChange={(e) => {
+                        const payload = updateFilterValue(e.target.value);
+
+                        return dispatch(payload);
+                    }}
+                />
             </label>
 
             <div className="iws_buttons">

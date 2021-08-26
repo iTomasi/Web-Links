@@ -1,0 +1,44 @@
+.iw_formHashTags {
+    .iws_title {
+        display: block;
+        margin-bottom: 5px;
+        font-size: $FONT_XL;
+    }
+
+    .iws_input {
+        border: 2px solid #e6eaef;
+        border-radius: 5px;
+        padding: 7px 5px 7px 5px;
+        display: flex;
+        flex-wrap: wrap;
+
+        span {
+            margin-right: 5px;
+            font-size: $FONT_XL;
+            background: #e6eaef;
+            padding: 4px 8px;
+            margin-bottom: 5px;
+            border-radius: 5px;
+            display: flex;
+            align-items: center;
+
+            label {
+                margin-right: 5px;
+            }
+
+            .iws_icon {
+                color: #fc5185;
+                cursor: pointer;
+            }
+        }
+
+        input {
+            max-width: 100%;
+            outline: none;
+            border: none;
+            background: transparent;
+            font-size: $FONT_XL;
+            margin-top: -3px;
+        }
+    }
+}

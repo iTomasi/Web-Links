@@ -1,10 +1,19 @@
 import React from "react";
+import { toast } from "react-hot-toast";
 
 // Components
 import FormSection from "components/form/FormSection";
+import FormHashTags from "components/form/FormHashTags";
 
 // Types
 import { IFormWeb } from "types/Form";
+
+// Axios
+import insertWeb from "axiosSrc/web/insertWeb";
+
+// Redux
+import { useDispatch } from "react-redux";
+import { pushWebArray } from "reduxSrc/web/webState";
 
 interface IModalHandleWebProps {
     adding: boolean;
@@ -19,10 +28,27 @@ const ModalHandleWeb = ({
     setFormWeb,
     setShowModal,
 }: IModalHandleWebProps) => {
-    const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-        e.preventDefault();
+    const dispatch = useDispatch();
 
-        console.log(formWeb);
+    const handleSubmit = async (e: any) => {
+        if (adding) {
+            const { error, data } = await insertWeb({
+                title: formWeb.title,
+                url: formWeb.url,
+                description: formWeb.description,
+                hashTags: formWeb.hashTags,
+            });
+
+            if (error) return toast.error(error);
+
+            const payload = pushWebArray(data);
+
+            dispatch(payload);
+
+            toast.success("Website added succesfully");
+
+            setShowModal(false);
+        }
     };
 
     const handleOnChange = ({ inputName, theValue }) => {
@@ -32,8 +58,22 @@ const ModalHandleWeb = ({
         }));
     };
 
+    const handleHashTags = (newArray: string[]) => {
+        return setFormWeb((prev: any) => ({
+            ...prev,
+            hashTags: newArray,
+        }));
+    };
+
+    const handleHashTagsPush = (value: string) => {
+        return setFormWeb((prev: any) => ({
+            ...prev,
+            hashTags: [...prev.hashTags, value],
+        }));
+    };
+
     return (
-        <form className="iw_modalHandleWeb" onSubmit={handleSubmit}>
+        <div className="iw_modalHandleWeb">
             <div className="iws_content">
                 <h2>{adding ? "Agregar nueva pagina" : "Editar pagina"}</h2>
 
@@ -60,15 +100,23 @@ const ModalHandleWeb = ({
                     onChange={handleOnChange}
                     maxCharacters={150}
                 />
+
+                <FormHashTags
+                    hashTags={formWeb.hashTags}
+                    removingTag={handleHashTags}
+                    inputValue={handleHashTagsPush}
+                />
             </div>
 
             <div className="iws_buttons">
                 <button type="button" onClick={() => setShowModal(false)}>
                     Cancelar
                 </button>
-                <button type="submit">Aceptar</button>
+                <button type="button" onClick={handleSubmit}>
+                    Aceptar
+                </button>
             </div>
-        </form>
+        </div>
     );
 };
 

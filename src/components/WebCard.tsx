@@ -4,24 +4,26 @@ import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrash, faEdit } from "@fortawesome/free-solid-svg-icons";
 
-const WebCard = () => {
+interface IWebCardProps {
+    id: string;
+    title: string;
+    url: string;
+    description: string;
+    hashTags: string[];
+}
+
+const WebCard = ({ id, title, url, description, hashTags }: IWebCardProps) => {
     return (
         <div className="iw_webCard">
             <div className="iws_content">
-                <h3>
-                    Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-                    Corrupti, autem.
-                </h3>
+                <h3>{title}</h3>
 
-                <p>
-                    Lorem ipsum dolor sit amet consectetur, adipisicing elit.
-                    Aliquid, cum.
-                </p>
+                <p>{description}</p>
 
                 <div className="iws_hashtags">
-                    <h5>#testt</h5>
-                    <h5>#asdaksdkasdjaksdj</h5>
-                    <h5>#tomassss</h5>
+                    {hashTags.map((hashTag, index) => (
+                        <h5 key={index}>#{hashTag}</h5>
+                    ))}
                 </div>
             </div>
 

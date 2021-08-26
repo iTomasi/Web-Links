@@ -20,7 +20,12 @@
     "baseUrl": ".",
     "paths": {
       "components/*": ["src/components/*"],
-      "types/*": ["src/types/*"]
+      "types/*": ["src/types/*"],
+      "reduxSrc/*": ["src/redux/*"],
+      "databases/*": ["src/databases/*"],
+      "config/*": ["src/config/*"],
+      "models/*": ["src/models/*"],
+      "axiosSrc/*": ["src/axios/*"]
     }
   },
   "include": [
